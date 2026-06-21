@@ -1,9 +1,10 @@
 # Environment
 .env
 
-# Cache and data (generated, not source)
+# Cache and generated data (not source)
 data/cache/
 data/last_refresh.txt
+data/model_config.json
 
 # Python
 __pycache__/

@@ -1,0 +1,33 @@
+watchlist_file: data/watchlist.json
+
+data:
+  price_history_days: 365
+
+cache:
+  ttl_prices_seconds: 14400       # 4 hours
+  ttl_fundamentals_seconds: 86400  # 24 hours
+  ttl_news_seconds: 7200           # 2 hours
+
+news:
+  enabled: true
+  headlines_per_stock: 7
+  positive_threshold: 0.6
+  negative_threshold: 0.4
+
+scoring:
+  short_term:
+    weights: [0.2, 0.2, 0.2, 0.2, 0.2, 0.0]   # RSI, MACD, BB, Volume, Momentum, News
+    bias: 0.0
+  long_term:
+    weights: [0.2, 0.2, 0.2, 0.2, 0.2, 0.0]   # PE, EPS, Debt, Promoter, 52W, News
+    bias: 0.0
+
+claude:
+  enabled: true
+  model: claude-haiku-4-5-20251001
+  max_tokens: 400
+
+display:
+  default_period: "6mo"
+  top_n_picks: 5
+  themes_on_home: 5
