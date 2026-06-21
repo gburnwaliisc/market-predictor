@@ -1,0 +1,26 @@
+# Environment
+.env
+
+# Cache and data (generated, not source)
+data/cache/
+data/last_refresh.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
