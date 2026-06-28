@@ -2,7 +2,8 @@
 .env
 
 # Cache and generated data (not source)
-data/cache/
+data/cache/*
+!data/cache/**/.gitkeep
 data/last_refresh.txt
 data/model_config.json
 
