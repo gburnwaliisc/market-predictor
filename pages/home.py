@@ -86,15 +86,29 @@ if df is not None and not df.empty:
 
     # ── Plotly area/line chart ─────────────────────────────────────────────────
     line_rgb = "63,185,80" if is_up else "248,81,73"
-    fig = go.Figure(go.Scatter(
+    y_min = float(df["Close"].min())
+    y_max = float(df["Close"].max())
+    y_pad = (y_max - y_min) * 0.15   # 15% padding so the line isn't flush to top/bottom
+
+    # Baseline trace at chart floor — fill="tonexty" fills between the two traces
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=df.index, y=[y_min - y_pad] * len(df),
+        mode="lines", line=dict(color="rgba(0,0,0,0)", width=0),
+        showlegend=False, hoverinfo="skip",
+    ))
+    fig.add_trace(go.Scatter(
         x=df.index, y=df["Close"], mode="lines",
-        line=dict(color=f"rgb({line_rgb})", width=2),
-        fill="tozeroy",
-        fillcolor=f"rgba({line_rgb},0.08)",
+        line=dict(color=f"rgb({line_rgb})", width=2.5),
+        fill="tonexty",
+        fillcolor=f"rgba({line_rgb},0.10)",
         hovertemplate="<b>₹%{y:,.0f}</b><extra></extra>",
+        name="Sensex",
     ))
     layout = dict(**PLOTLY_DARK, height=320)
     layout["yaxis"]["tickprefix"] = "₹"
+    layout["yaxis"]["range"] = [y_min - y_pad, y_max + y_pad]
+    layout["showlegend"] = False
     fig.update_layout(**layout)
     st.plotly_chart(fig, use_container_width=True)
 

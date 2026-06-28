@@ -48,12 +48,22 @@ html, body, .stApp {
 }
 
 /* ─── Hide Streamlit chrome ─────────────────────────────────── */
-#MainMenu              { visibility: hidden !important; }
-footer                 { visibility: hidden !important; }
-header                 { visibility: hidden !important; }
-.stDeployButton        { display: none !important; }
-[data-testid="stToolbar"]   { display: none !important; }
-[data-testid="stDecoration"] { display: none !important; }
+#MainMenu                        { visibility: hidden !important; }
+footer                           { visibility: hidden !important; }
+.stDeployButton                  { display: none !important; }
+[data-testid="stToolbar"]        { display: none !important; }
+[data-testid="stDecoration"]     { display: none !important; }
+[data-testid="stStatusWidget"]   { display: none !important; }
+/* Keep header element itself visible so the sidebar toggle button
+   (which lives inside it in some Streamlit versions) stays clickable */
+header [data-testid="stToolbar"] { visibility: hidden !important; }
+/* Explicitly force sidebar collapse/expand controls to stay visible */
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"] {
+    visibility: visible !important;
+    display: flex !important;
+    z-index: 999999 !important;
+}
 
 /* ─── Layout ────────────────────────────────────────────────── */
 .block-container {
