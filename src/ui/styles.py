@@ -71,6 +71,12 @@ section[data-testid="stSidebar"] p,
 section[data-testid="stSidebar"] span,
 section[data-testid="stSidebar"] div { color: #c9d1d9 !important; }
 
+/* Force nav link text to always be visible regardless of active state */
+[data-testid="stSidebarNav"] a,
+[data-testid="stSidebarNav"] a *,
+[data-testid="stSidebarNav"] [role="link"],
+[data-testid="stSidebarNav"] [role="link"] * { color: #c9d1d9 !important; }
+
 section[data-testid="stSidebar"] label {
     color: #8b949e !important;
     font-size: 0.72rem !important;
@@ -108,23 +114,38 @@ section[data-testid="stSidebar"] .stButton > button:hover {
 [data-testid="stSidebarNav"] {
     padding-top: 0.25rem !important;
 }
-[data-testid="stSidebarNav"] a {
-    color: #8b949e !important;
+[data-testid="stSidebarNav"] a,
+[data-testid="stSidebarNav"] [role="link"] {
     border-radius: 6px !important;
     padding: 0.5rem 0.75rem !important;
     font-size: 0.875rem !important;
     font-weight: 500 !important;
-    transition: all 0.12s !important;
+    transition: background 0.12s !important;
     margin-bottom: 2px !important;
+    display: flex !important;
+    align-items: center !important;
 }
-[data-testid="stSidebarNav"] a:hover {
+[data-testid="stSidebarNav"] a:hover,
+[data-testid="stSidebarNav"] [role="link"]:hover {
     background: #21262d !important;
     color: #f0f6fc !important;
 }
-[data-testid="stSidebarNav"] [aria-selected="true"] {
+[data-testid="stSidebarNav"] a:hover *,
+[data-testid="stSidebarNav"] [role="link"]:hover * {
+    color: #f0f6fc !important;
+}
+/* Active page — covers both aria-selected and aria-current (Streamlit uses
+   aria-current="page" for the active nav item in st.navigation) */
+[data-testid="stSidebarNav"] [aria-selected="true"],
+[data-testid="stSidebarNav"] [aria-current="page"],
+[data-testid="stSidebarNav"] a[aria-current="page"] {
     background: #1f6feb !important;
-    color: #fff !important;
     font-weight: 600 !important;
+}
+[data-testid="stSidebarNav"] [aria-selected="true"] *,
+[data-testid="stSidebarNav"] [aria-current="page"] *,
+[data-testid="stSidebarNav"] a[aria-current="page"] * {
+    color: #ffffff !important;
 }
 
 /* ─── Tabs ──────────────────────────────────────────────────── */
