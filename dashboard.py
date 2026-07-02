@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 st.set_page_config(
-    page_title="Market Predictor — Indian Equity Intelligence",
+    page_title="MarketInsight · burnwal.com",
     page_icon="📈",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -16,8 +16,8 @@ inject_css()
 # ── Sidebar branding (visible on every page) ──────────────────────────────────
 with st.sidebar:
     st.markdown(
-        '<p class="mp-brand">Market<span class="mp-brand-accent">Predictor</span></p>'
-        '<span class="mp-brand-tag">Indian Equity Intelligence</span>',
+        '<p class="mp-brand">Market<span class="mp-brand-accent">Insight</span></p>'
+        '<span class="mp-brand-tag">marketinsight.burnwal.com</span>',
         unsafe_allow_html=True,
     )
     st.divider()
